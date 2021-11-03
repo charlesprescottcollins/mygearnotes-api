@@ -29,5 +29,16 @@ export default withAuth(
     },
     lists,
     session,
+    server: {
+      port: 3002,
+      cors: {
+        // TODO: move this to an environment variable, currently it doesnt work with 'process.env.FRONT_END_URL'
+        // doesn't work
+        origin: [process.env.FRONT_END_URL, 'http://localhost:3000'],
+        // works
+        // origin: "http://localhost:3003",
+        credentials: true
+      }
+    }
   })
 );
