@@ -13,12 +13,12 @@ generator client {
 }
 
 model User {
-  id                   String     @id @default(cuid())
-  name                 String     @default("")
-  email                String     @unique @default("")
-  password             String
-  posts                Post[]     @relation("Post_author")
-  from_GearList_author GearList[] @relation("GearList_author")
+  id        String     @id @default(cuid())
+  name      String     @default("")
+  email     String     @unique @default("")
+  password  String
+  posts     Post[]     @relation("Post_author")
+  gearLists GearList[] @relation("GearList_author")
 }
 
 model Post {

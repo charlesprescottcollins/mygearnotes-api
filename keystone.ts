@@ -33,8 +33,15 @@ export default withAuth(
       port: 3002,
       cors: {
         origin: [`${process.env.FRONT_END_URL}`, 'http://localhost:3003'],
-        credentials: true
-      }
-    }
+        credentials: true,
+      },
+    },
+    images: {
+      upload: 'local',
+      local: {
+        storagePath: 'public/images',
+        baseUrl: '/images',
+      },
+    },
   })
 );

@@ -13,6 +13,13 @@ type User {
     skip: Int! = 0
   ): [Post!]
   postsCount(where: PostWhereInput! = {}): Int
+  gearLists(
+    where: GearListWhereInput! = {}
+    orderBy: [GearListOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [GearList!]
+  gearListsCount(where: GearListWhereInput! = {}): Int
 }
 
 type PasswordState {
@@ -32,6 +39,7 @@ input UserWhereInput {
   name: StringFilter
   email: StringFilter
   posts: PostManyRelationFilter
+  gearLists: GearListManyRelationFilter
 }
 
 input IDFilter {
@@ -79,6 +87,12 @@ input PostManyRelationFilter {
   none: PostWhereInput
 }
 
+input GearListManyRelationFilter {
+  every: GearListWhereInput
+  some: GearListWhereInput
+  none: GearListWhereInput
+}
+
 input UserOrderByInput {
   id: OrderDirection
   name: OrderDirection
@@ -95,6 +109,7 @@ input UserUpdateInput {
   email: String
   password: String
   posts: PostRelateToManyForUpdateInput
+  gearLists: GearListRelateToManyForUpdateInput
 }
 
 input PostRelateToManyForUpdateInput {
@@ -102,6 +117,13 @@ input PostRelateToManyForUpdateInput {
   set: [PostWhereUniqueInput!]
   create: [PostCreateInput!]
   connect: [PostWhereUniqueInput!]
+}
+
+input GearListRelateToManyForUpdateInput {
+  disconnect: [GearListWhereUniqueInput!]
+  set: [GearListWhereUniqueInput!]
+  create: [GearListCreateInput!]
+  connect: [GearListWhereUniqueInput!]
 }
 
 input UserUpdateArgs {
@@ -114,11 +136,17 @@ input UserCreateInput {
   email: String
   password: String
   posts: PostRelateToManyForCreateInput
+  gearLists: GearListRelateToManyForCreateInput
 }
 
 input PostRelateToManyForCreateInput {
   create: [PostCreateInput!]
   connect: [PostWhereUniqueInput!]
+}
+
+input GearListRelateToManyForCreateInput {
+  create: [GearListCreateInput!]
+  connect: [GearListWhereUniqueInput!]
 }
 
 type Post {

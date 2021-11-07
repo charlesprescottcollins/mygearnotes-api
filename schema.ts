@@ -55,6 +55,7 @@ export const lists = {
       // should be referencable by the 'author' field of posts.
       // Make sure you read the docs to understand how they work: https://keystonejs.com/docs/guides/relationships#understanding-relationships
       posts: relationship({ ref: 'Post.author', many: true }),
+      gearLists: relationship({ ref: 'GearList.author', many: true }),
     },
     // Here we can configure the Admin UI. We want to show a user's name and posts in the Admin UI
     ui: {
@@ -160,7 +161,7 @@ export const lists = {
           isRequired: true,
         },
       }),
-      author: relationship({ ref: 'User', many: false}),
+      author: relationship({ ref: 'User.gearLists', many: false}),
       description: text(),
       items: relationship({ ref: 'Item', many: true})
     },
